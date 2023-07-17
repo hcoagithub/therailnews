@@ -1,0 +1,34 @@
+<%= form_with(model: notice) do |form| %>
+  <% if notice.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(notice.errors.count, "error") %> prohibited this notice from being saved:</h2>
+
+      <ul>
+        <% notice.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :titulo, style: "display: block" %>
+    <%= form.text_field :titulo %>
+  </div>
+
+  <div>
+    <%= form.label :contenido, style: "display: block" %>
+    <%= form.text_field :contenido %>
+  </div>
+
+  <div>
+    <%= form.label :photo %>
+    <%= form.file_field :photo %>
+  </div>
+
+  <%= form.hidden_field :user_id %>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

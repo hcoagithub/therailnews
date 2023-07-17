@@ -1,0 +1,26 @@
+
+
+<h1>Notices</h1>
+
+<div id="notices">
+  <% @notices.each do |notice| %>
+    
+    <div class="card" style="width: 18rem;">
+    <% if notice.photo.present? %>
+      <%= image_tag notice.photo %>
+    <% else %>
+    <%= image_tag("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRMT27SaebCWZfJ0oFJph0SovekJ9HUc-OZKp2XlbZ&s") %>
+    <% end %>
+      <div class="card-body">
+        <h5 class="card-title"><%= notice.titulo %></h5>
+        <p class="card-text"><%= notice.contenido %></p>
+        <%= link_to "Show this notice", notice, class:'btn btn-primary' %>
+      </div>
+    </div>
+    <p>
+      
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New notice", new_notice_path %>

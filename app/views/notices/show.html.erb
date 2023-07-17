@@ -1,0 +1,30 @@
+<%= render @notice %>
+
+<h2>Comentarios</h2>
+<% @comentarios.each do |comentario| %>
+  <%= image_tag User.find(comentario.user_id).photo, class:'img-comentario' if User.find(comentario.user_id).photo.attached? %>
+  <p><strong><%= User.find(comentario.user_id).name or User.find(comentario.user_id).email %>:</strong> <%= comentario.contenido %></p>
+  <% if user_signed_in? %>
+    <% if current_user.id == @notice.user_id %>
+      <%= link_to("Eliminar comentario", delete_comentario_path(@notice,comentario.id), data:{
+        turbo_method: :delete,
+        turbo_confirm: "Esta seguro de eliminar?"
+    }) %>
+    <% end %>
+  <% end %>
+<% end %>
+
+<div>
+
+<% if user_signed_in? %>
+  <% if current_user.id == @notice.user_id %>
+    <%= link_to "Edit this notice", edit_notice_path(@notice) %> |
+    <%= button_to "Destroy this notice", @notice, method: :delete %>
+  <% end %>
+<% end %>
+
+  <%= link_to "Add comment", new_notice_comentario_path(@notice) %> |
+  <%= link_to "Back to notices", notices_path %>
+    
+  
+</div>
