@@ -92,3 +92,7 @@ test:
 #   database: therailnews_production
 #   username: therailnews
 #   password: <%= ENV["THERAILNEWS_DATABASE_PASSWORD"] %>
+
+production:
+  <<: *default
+  url: <%= ENV['DATABASE_URL'] %>
